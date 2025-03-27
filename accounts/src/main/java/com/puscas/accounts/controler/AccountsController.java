@@ -1,6 +1,7 @@
 package com.puscas.accounts.controler;
 
 import com.puscas.accounts.constants.AccountsConstants;
+import com.puscas.accounts.dto.AccountsContactInfoDto;
 import com.puscas.accounts.dto.CustomerDto;
 import com.puscas.accounts.dto.ErrorResponseDto;
 import com.puscas.accounts.dto.ResponseDto;
@@ -50,7 +51,14 @@ public class AccountsController {
     @Value("${build.version}")
     private String buildVersion;
 
+    @Autowired
+    private AccountsContactInfoDto accountsContactInfoDto;
 
+    @GetMapping("contact-info")
+    public ResponseEntity<AccountsContactInfoDto> getContactInfo(){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(accountsContactInfoDto);
+    }
 
     @Operation(
             summary = "get build info",
