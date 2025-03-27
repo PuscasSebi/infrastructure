@@ -1,12 +1,19 @@
 package com.eazybytes.loans.dto;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.List;
 import java.util.Map;
 
-@ConfigurationProperties(prefix = "loan")
-public record LoanConfig(String message, Map<String, String> contactDetails, List<String> onCallSupport)
-{
+@ConfigurationProperties(prefix = "loans")
+@Getter
+@Setter
+public class LoanConfig {
+
+    private String message;
+    private Map<String, String> contactDetails;
+    private List<String> onCallSupport;
 
 }
