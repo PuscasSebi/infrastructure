@@ -45,3 +45,7 @@ tasks.named('test') {
 tasks.named("bootJar") {
 	mainClass = 'com.puscas.accounts.AccountsApplication'
 }
+
+tasks.named("bootBuildImage") {
+	imageName = 'puscassebi/accounts:s6'
+}

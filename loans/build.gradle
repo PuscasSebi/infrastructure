@@ -24,7 +24,7 @@ repositories {
 }
 
 tasks.named("bootBuildImage") {
-	imageName = 'puscassebi/loans:s4'
+	imageName = 'puscassebi/loans:s6'
 }
 
 dependencies {
