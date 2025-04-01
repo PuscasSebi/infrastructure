@@ -3,6 +3,11 @@ server:
   port: 8080
 
 spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
   application:
     name: accounts
   profiles:
@@ -23,8 +28,8 @@ spring:
   config:
     import: "configserver:http://localhost:8071/"
 
-  management:
-      endpoints:
-        web:
-          exposure:
-            include: "*"
+management:
+    endpoints:
+      web:
+        exposure:
+          include: "*"
