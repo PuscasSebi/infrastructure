@@ -50,6 +50,8 @@ dependencies {
 	implementation("org.springframework.cloud:spring-cloud-starter-bus-amqp:4.2.0")
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -69,4 +71,4 @@ tasks.named("bootBuildImage") {
 	imageName = 'puscassebi/accounts:s6'
 }
 
-jib.to.image = 'puscassebi/accounts:s7'
+jib.to.image = 'puscassebi/accounts:s8'
