@@ -1,5 +1,4 @@
 services:
-
   rabbit:
     image: rabbitmq:3.13-management
     hostname: rabbitmq
@@ -81,9 +80,8 @@ services:
       file: common-config.yml
       service: microservice-base-config
     environment:
-      SPRING_APPLICATION_NAME: "eurekaserver"
-      SPRING_PROFILES_ACTIVE: prod
-      SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
+      JVM_OPTS: >
+        -Dspring.config.import=http://configserver:8071
 
   accounts:
     image: "puscassebi/accounts:s8"
