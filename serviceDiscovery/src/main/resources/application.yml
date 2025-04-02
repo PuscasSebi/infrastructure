@@ -6,13 +6,29 @@ spring:
   application:
     name: eurekaserver
   config:
-    import: "configserver:http://localhost:8071/"
+    import: "configserver:http://configserver:8071/"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: eurekaserver
   client:
-    fetch-registry: false
-    register-with-eureka: false
-    service-url:
-      default: http://${eureka.instance.hostname}:${server.port}/eureka/
+    fetchRegistry: false
+    registerWithEureka: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
