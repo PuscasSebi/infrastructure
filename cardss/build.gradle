@@ -63,3 +63,6 @@ tasks.named('test') {
 tasks.named("bootBuildImage") {
 	imageName = 'puscassebi/cards:s6'
 }
+
+
+jib.to.image = 'puscassebi/cards:s6'
