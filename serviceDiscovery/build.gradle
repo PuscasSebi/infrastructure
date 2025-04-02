@@ -24,14 +24,10 @@ ext {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.cloud:spring-cloud-config-server'
-	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-bus-amqp
-	implementation("org.springframework.cloud:spring-cloud-starter-bus-amqp:4.2.0")
-	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-config-monitor
-	runtimeOnly("org.springframework.cloud:spring-cloud-config-monitor:4.2.0")
+	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
 }
 
 dependencyManagement {
@@ -43,4 +39,4 @@ dependencyManagement {
 tasks.named('test') {
 	useJUnitPlatform()
 }
-jib.to.image = 'puscassebi/configserver:s8'
+jib.to.image = 'puscassebi/eurekaserver:s8'

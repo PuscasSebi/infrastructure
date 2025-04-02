@@ -46,6 +46,7 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-bus-amqp
 	implementation("org.springframework.cloud:spring-cloud-starter-bus-amqp:4.2.0")
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	annotationProcessor 'org.projectlombok:lombok'
 	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
 	implementation("mysql:mysql-connector-java:8.0.32")
@@ -66,4 +67,4 @@ tasks.named("bootBuildImage") {
 }
 
 
-jib.to.image = 'puscassebi/cards:s7'
+jib.to.image = 'puscassebi/cards:s8'
