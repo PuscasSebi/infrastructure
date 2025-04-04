@@ -36,7 +36,11 @@ dependencyManagement {
 	}
 }
 
+tasks.named("bootBuildImage") {
+	imageName = 'puscassebi/eurekaserver:s9'
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
-jib.to.image = 'puscassebi/eurekaserver:s8'
+jib.to.image = 'puscassebi/eurekaserver:s9'

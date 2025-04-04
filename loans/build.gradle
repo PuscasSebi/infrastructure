@@ -65,4 +65,4 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-jib.to.image = 'puscassebi/loans:s8'
+jib.to.image = 'puscassebi/loans:s9'

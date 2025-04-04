@@ -27,6 +27,17 @@ services:
       SPRING_RABBITMQ_HOST: "rabbit"
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8070/eureka"
 
+  microservice-base-eureka:
+    extends:
+      service: network-deploy-service
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    environment:
+      SPRING_RABBITMQ_HOST: "rabbit"
+
+
   microservice-configserver-config:
     depends_on:
       configserver:
