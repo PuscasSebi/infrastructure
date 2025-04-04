@@ -67,4 +67,4 @@ tasks.named("bootBuildImage") {
 }
 
 
-jib.to.image = 'puscassebi/cards:s8'
+jib.to.image = 'puscassebi/cards:s9'
