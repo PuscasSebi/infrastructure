@@ -47,4 +47,4 @@ tasks.named('test') {
 }
 
 
-jib.to.image = 'puscassebi/gateway:s9'
+jib.to.image = 'puscassebi/gateway:s10'
