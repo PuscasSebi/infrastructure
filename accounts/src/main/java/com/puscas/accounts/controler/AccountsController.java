@@ -6,6 +6,7 @@ import com.puscas.accounts.dto.CustomerDto;
 import com.puscas.accounts.dto.ErrorResponseDto;
 import com.puscas.accounts.dto.ResponseDto;
 import com.puscas.accounts.service.IAccountsService;
+import io.github.resilience4j.retry.annotation.Retry;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -78,10 +79,16 @@ public class AccountsController {
             )
     }
     )
+    @Retry(name = "accountBuildInfo", fallbackMethod = "getBuildInfoFallBack")
     @GetMapping("build-info")
     public ResponseEntity<String> getBuildVersion(){
         return ResponseEntity.status(HttpStatus.OK)
                 .body(buildVersion);
+    }
+
+    public ResponseEntity<String> getBuildInfoFallBack(Throwable trouble) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body("XXXXXX");
     }
 
     @GetMapping("java-info")
