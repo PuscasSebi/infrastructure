@@ -51,7 +51,10 @@ public class GatewayApplication {
 				.route(p -> p
 						.path("/eazybank/cards/**")
 						.filters( f -> f.rewritePath("/eazybank/cards/(?<segment>.*)","/${segment}")
-								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
+								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
+								.requestRateLimiter(config -> config.setRateLimiter(redisRateLimiter()).setKeyResolver(userKeyResolver()))
+
+						)
 						.uri("lb://CARDS")).build();
 
 
@@ -65,10 +68,10 @@ public class GatewayApplication {
 				.timeLimiterConfig(TimeLimiterConfig.custom().timeoutDuration(Duration.ofSeconds(4)).build()).build());
 	}
 
-/*	@Bean
+	@Bean
 	public RedisRateLimiter redisRateLimiter() {
 		return new RedisRateLimiter(1, 1, 1);
-	}*/
+	}
 
 	@Bean
 	KeyResolver userKeyResolver() {

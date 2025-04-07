@@ -8,3 +8,6 @@ docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4.0-man
 
 
 docker run -p 3309:3306 --name some-loans-mysql -e MYSQL_DATABASE=loansdb  -e MYSQL_ROOT_PASSWORD=root -d mysql
+
+
+docker run -p 6379:6379 --name some-redis -d redis
