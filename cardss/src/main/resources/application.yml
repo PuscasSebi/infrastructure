@@ -7,9 +7,10 @@ spring:
     username: guest
     password: guest
   application:
+    name: "cards"
   profiles:
     active: "prod"
-    name: "cards"
+
 
   datasource:
     url: jdbc:mysql://localhost:3308/cardsdb

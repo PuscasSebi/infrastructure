@@ -15,6 +15,8 @@ import com.puscas.accounts.service.ICustomersService;
 import com.puscas.accounts.service.client.CardsFeignClient;
 import com.puscas.accounts.service.client.LoansFeignClient;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,7 @@ public class CustomersServiceImpl implements ICustomersService {
     private CustomerRepository customerRepository;
     private CardsFeignClient cardsFeignClient;
     private LoansFeignClient loansFeignClient;
+    private static final Logger logger = LoggerFactory.getLogger(CustomersServiceImpl.class);
 
     /**
      * @param mobileNumber  - Input Mobile Number
@@ -45,10 +48,16 @@ public class CustomersServiceImpl implements ICustomersService {
         customerDetailsDto.setAccountsDto(AccountsMapper.mapToAccountsDto(accounts, new AccountsDto()));
 
         ResponseEntity<LoansDto> loansDtoResponseEntity = loansFeignClient.fetchLoanDetails(correlationId, mobileNumber);
-        customerDetailsDto.setLoansDto(loansDtoResponseEntity.getBody());
+        if (loansDtoResponseEntity != null) {
+            customerDetailsDto.setLoansDto(loansDtoResponseEntity.getBody());
+
+        }else{
+            logger.info("a returnat null fmm");
+        }
 
         ResponseEntity<CardsDto> cardsDtoResponseEntity = cardsFeignClient.fetchCardDetails(correlationId ,mobileNumber);
-        customerDetailsDto.setCardsDto(cardsDtoResponseEntity.getBody());
+        if (cardsDtoResponseEntity != null)
+            customerDetailsDto.setCardsDto(cardsDtoResponseEntity.getBody());
 
         return customerDetailsDto;
 
