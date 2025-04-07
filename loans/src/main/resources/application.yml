@@ -12,7 +12,7 @@ spring:
     name: loans
 
   datasource:
-    url: jdbc:mysql://localhost:3307/loansdb
+    url: jdbc:mysql://localhost:3309/loansdb
     username: root
     password: 'root'
   jpa:
@@ -21,7 +21,7 @@ spring:
     init:
       mode: always
   config:
-    import: "configserver:http://configserver:8071/"
+    import: "configserver:http://localhost:8071/"
 
 eureka:
   instance:
