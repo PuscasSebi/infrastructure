@@ -34,3 +34,20 @@ logging:
       puscas:
         gatewayserver: DEBUG
 
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 5
+      permittedNumberOfCallsInHalfOpenState: 2
+      failure-rate-threshold: 10
+      automatic-transition-from-open-to-half-open-enabled: true
+      minimum-number-of-calls: 2
+      waitDurationInOpenState: 10000
+  instances:
+    accountsCircuitBreaker:
+      slidingWindowSize: 5
+      permittedNumberOfCallsInHalfOpenState: 2
+      failure-rate-threshold: 10
+      automatic-transition-from-open-to-half-open-enabled: true
+      minimum-number-of-calls: 2
+      waitDurationInOpenState: 10000

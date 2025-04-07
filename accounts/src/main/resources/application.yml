@@ -3,6 +3,10 @@ server:
   port: 8080
 
 spring:
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
   rabbitmq:
     host: localhost
     port: 5672
@@ -13,7 +17,7 @@ spring:
   profiles:
     active: "prod"
   datasource:
-    url: jdbc:mysql://localhost:3306/accountsdb
+    url: jdbc:mysql://localhost:3307/accountsdb
     username: root
     password: 'root'
   jpa:
@@ -62,3 +66,14 @@ management:
 endpoints:
   shutdown:
     enabled: true
+
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 5
+      permittedNumberOfCallsInHalfOpenState: 2
+      failure-rate-threshold: 10
+      automatic-transition-from-open-to-half-open-enabled: true
+      minimum-number-of-calls: 2
+      waitDurationInOpenState: 10000
