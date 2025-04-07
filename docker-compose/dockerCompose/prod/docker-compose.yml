@@ -55,7 +55,7 @@ services:
       file: common-config.yml
       service: microservice-db-config
   configserver:
-    image: 'puscassebi/configserver:s9'
+    image: 'puscassebi/configserver:s10'
     container_name: configserver-ms
     ports:
       - '8071:8071'
@@ -73,7 +73,7 @@ services:
       file: common-config.yml
       service: microservice-base-config
   eurekaserver:
-    image: 'puscassebi/eurekaserver:s9'
+    image: 'puscassebi/eurekaserver:s10'
     container_name: eurekaserver-ms
     ports:
       - '8070:8070'
@@ -94,7 +94,7 @@ services:
       file: common-config.yml
       service: microservice-base-eureka
   accounts:
-    image: 'puscassebi/accounts:s9'
+    image: 'puscassebi/accounts:s10'
     container_name: accounts-ms
     ports:
       - '8080:8080'
@@ -118,7 +118,7 @@ services:
       file: common-config.yml
       service: microservice-configserver-config
   loans:
-    image: 'puscassebi/loans:s9'
+    image: 'puscassebi/loans:s10'
     container_name: loans-ms
     ports:
       - '8090:8090'
@@ -139,7 +139,7 @@ services:
       file: common-config.yml
       service: microservice-configserver-config
   cards:
-    image: 'puscassebi/cards:s9'
+    image: 'puscassebi/cards:s10'
     container_name: cards-ms
     ports:
       - '9000:9000'
@@ -160,7 +160,7 @@ services:
       file: common-config.yml
       service: microservice-configserver-config
   gatewayserver:
-    image: 'puscassebi/gateway:s9'
+    image: 'puscassebi/gateway:s10'
     container_name: gateway-ms
     ports:
       - '8072:8072'
