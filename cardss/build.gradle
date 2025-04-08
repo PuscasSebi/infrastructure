@@ -49,6 +49,8 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	annotationProcessor 'org.projectlombok:lombok'
 	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	// https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus
+	implementation("io.micrometer:micrometer-registry-prometheus:1.14.5")
 	implementation("mysql:mysql-connector-java:8.0.32")
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
