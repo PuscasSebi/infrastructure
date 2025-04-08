@@ -26,7 +26,7 @@ spring:
     init:
       mode: always
   config:
-    import: "configserver:http://localhost:8071/"
+    import: "configserver:http://configserver:8071/"
 
 eureka:
   instance:
@@ -54,6 +54,12 @@ management:
       liveness-state:
         enabled: true
     endpoint:
+      metrics:
+        access: unrestricted
+      prometheus:
+        access: unrestricted
+      health:
+        show-details: always
       shutdown:
         enabled: true
         health:
@@ -65,11 +71,21 @@ management:
     metrics:
       tags:
         application: ${spring.application.name}
-
+    defaults:
+      metrics:
+        export:
+          enabled: true
+    prometheus:
+      metrics:
+        export:
+          enabled: true
 endpoints:
   shutdown:
     enabled: true
 
+logging:
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
 
 resilience4j.circuitbreaker:
   configs:

@@ -33,7 +33,7 @@ dependencies {
 	implementation("io.micrometer:micrometer-registry-prometheus:1.14.5")
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
+	runtimeOnly("io.opentelemetry.javaagent:opentelemetry-javaagent:2.14.0")
 }
 
 dependencyManagement {

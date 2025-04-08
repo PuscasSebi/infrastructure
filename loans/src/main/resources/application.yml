@@ -21,7 +21,7 @@ spring:
     init:
       mode: always
   config:
-    import: "configserver:http://localhost:8071/"
+    import: "configserver:http://configserver:8071/"
 
 eureka:
   instance:
@@ -39,6 +39,10 @@ info:
     version: "1.0.0"
 
 management:
+  prometheus:
+    metrics:
+      export:
+        enabled: true
   endpoints:
     web:
       exposure:
@@ -63,3 +67,8 @@ management:
 endpoints:
   shutdown:
     enabled: true
+
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"

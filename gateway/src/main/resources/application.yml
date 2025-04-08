@@ -2,7 +2,7 @@ spring:
   application:
     name: "gatewayserver"
   config:
-    import: "optional:configserver:http://localhost:8071/"
+    import: "configserver:http://configserver:8071/"
   cloud:
     gateway:
       discovery:
@@ -19,6 +19,10 @@ spring:
       port: 6379
       timeout: 1s
 management:
+  prometheus:
+    metrics:
+      export:
+        enabled: true
   endpoints:
     web:
       exposure:
@@ -39,6 +43,8 @@ info:
     version: "1.0.0"
 
 logging:
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
   level:
     com:
       puscas:
@@ -61,3 +67,4 @@ resilience4j.circuitbreaker:
       automatic-transition-from-open-to-half-open-enabled: true
       minimum-number-of-calls: 2
       waitDurationInOpenState: 10000
+
