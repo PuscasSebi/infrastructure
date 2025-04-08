@@ -22,7 +22,7 @@ spring:
     init:
       mode: always
   config:
-    import: "configserver:http://localhost:8071/"
+    import: "configserver:http://configserver:8071/"
 
 
 
@@ -61,6 +61,10 @@ management:
         enabled: true
     shutdown:
       enabled: true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
   info:
     env:
       enabled: true
@@ -68,3 +72,8 @@ management:
 endpoints:
   shutdown:
     enabled: true
+
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
