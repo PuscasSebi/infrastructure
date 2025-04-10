@@ -13,7 +13,7 @@ spring:
           destination: send-communication
           group: ${spring.application.name}
         emailsms-out-0:
-          destination: communication-sent
+          destination: communication-sent #automatically returns a mesasge to out here from email sms output
   rabbitmq:
     host: localhost
     port: 5672
