@@ -201,7 +201,7 @@ services:
       file: common-config.yml
       service: microservice-db-config
   configserver:
-    image: 'puscassebi/configserver:s12'
+    image: 'puscassebi/configserver:s13'
     container_name: configserver-ms
     ports:
       - '8071:8071'
@@ -222,7 +222,7 @@ services:
       SPRING_APPLICATION_NAME: configserver
       OTEL_SERVICE_NAME: configserver
   eurekaserver:
-    image: 'puscassebi/eurekaserver:s12'
+    image: 'puscassebi/eurekaserver:s13'
     container_name: eurekaserver-ms
     ports:
       - '8070:8070'
@@ -243,8 +243,10 @@ services:
       file: common-config.yml
       service: microservice-base-eureka
   accounts:
-    image: 'puscassebi/accounts:s12'
+    image: 'puscassebi/accounts:s13'
     container_name: accounts-ms
+    ports:
+      - '8080:8080'
     healthcheck:
       test: >-
         curl --fail --silent localhost:8080/actuator/health/readiness | grep UP
@@ -254,9 +256,12 @@ services:
       retries: 10
     environment:
       SPRING_APPLICATION_NAME: accounts
+      SPRING_RABBITMQ_HOST: "rabbit"
       SPRING_DATASOURCE_URL: 'jdbc:mysql://accountsdb:3306/accountsdb'
       OTEL_SERVICE_NAME: "accounts"
     depends_on:
+      rabbit:
+        condition: service_healthy
       accountsdb:
         condition: service_healthy
       eurekaserver:
@@ -265,7 +270,7 @@ services:
       file: common-config.yml
       service: microservice-configserver-config
   loans:
-    image: 'puscassebi/loans:s12'
+    image: 'puscassebi/loans:s13'
     container_name: loans-ms
     healthcheck:
       test: >-
@@ -285,7 +290,7 @@ services:
       file: common-config.yml
       service: microservice-configserver-config
   cards:
-    image: 'puscassebi/cards:s12'
+    image: 'puscassebi/cards:s13'
     container_name: cards-ms
     healthcheck:
       test: >-
@@ -305,7 +310,7 @@ services:
       file: common-config.yml
       service: microservice-configserver-config
   gatewayserver:
-    image: 'puscassebi/gateway:s12'
+    image: 'puscassebi/gateway:s13'
     container_name: gateway-ms
     ports:
       - '8072:8072'
@@ -329,6 +334,17 @@ services:
     extends:
       file: common-config.yml
       service: microservice-configserver-config
+  message:
+    image: "puscassebi/messagestream:s13"
+    container_name: message-ms
+    depends_on:
+      rabbit:
+        condition: service_healthy
+    environment:
+      SPRING_RABBITMQ_HOST: "rabbit"
+    extends:
+      file: common-config.yml
+      service: network-deploy-service
 networks:
   eazybank:
     driver: bridge
