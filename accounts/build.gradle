@@ -58,9 +58,12 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.cloud:spring-cloud-stream'
+	implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	runtimeOnly("io.opentelemetry.javaagent:opentelemetry-javaagent:2.14.0")
 }
@@ -76,4 +79,4 @@ tasks.named("bootBuildImage") {
 	imageName = 'puscassebi/accounts:s6'
 }
 
-jib.to.image = 'puscassebi/accounts:s12'
+jib.to.image = 'puscassebi/accounts:s13'
