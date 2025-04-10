@@ -2,6 +2,7 @@ package com.puscas.accounts.service.impl;
 
 import com.puscas.accounts.constants.AccountsConstants;
 import com.puscas.accounts.dto.AccountsDto;
+import com.puscas.accounts.dto.AccountsMsgDto;
 import com.puscas.accounts.dto.CustomerDto;
 import com.puscas.accounts.entity.Accounts;
 import com.puscas.accounts.entity.Customer;
@@ -13,6 +14,9 @@ import com.puscas.accounts.repository.AccountsRepository;
 import com.puscas.accounts.repository.CustomerRepository;
 import com.puscas.accounts.service.IAccountsService;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -25,6 +29,10 @@ public class AccountsServiceImpl  implements IAccountsService {
 
     private AccountsRepository accountsRepository;
     private CustomerRepository customerRepository;
+
+    private static final Logger logger = LoggerFactory.getLogger(AccountsServiceImpl.class);
+
+    private final StreamBridge stream;
 
     /**
      * @param customerDto - CustomerDto Object
@@ -40,7 +48,17 @@ public class AccountsServiceImpl  implements IAccountsService {
 /*        customer.setCreatedAt(LocalDateTime.now());
         customer.setCreatedBy("anonymous");*/
         Customer savedCustomer = customerRepository.save(customer);
-        accountsRepository.save(createNewAccount(savedCustomer));
+
+        Accounts s = accountsRepository.save(createNewAccount(savedCustomer));
+        sendCommunication(s, savedCustomer);
+    }
+
+    private void sendCommunication(Accounts account, Customer customer) {
+        var accountsMsgDto = new AccountsMsgDto(account.getAccountNumber(), customer.getName(),
+                customer.getEmail(), customer.getMobileNumber());
+        logger.info("Sending Communication request for the details: {}", accountsMsgDto);
+        var result = stream.send("sendCommunication-out-0", accountsMsgDto);
+        logger.info("Is the Communication request successfully triggered ? : {}", result);
     }
 
     /**

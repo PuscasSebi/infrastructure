@@ -45,4 +45,4 @@ dependencyManagement {
 tasks.named('test') {
 	useJUnitPlatform()
 }
-jib.to.image = 'puscassebi/configserver:s12'
+jib.to.image = 'puscassebi/configserver:s13'
