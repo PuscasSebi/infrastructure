@@ -34,6 +34,11 @@ dependencies {
 	// https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus
 	implementation("io.micrometer:micrometer-registry-prometheus:1.14.5")
 	runtimeOnly("io.opentelemetry.javaagent:opentelemetry-javaagent:2.14.0")
+// https://mvnrepository.com/artifact/org.springframework.security/spring-security-oauth2-resource-server
+	implementation("org.springframework.security:spring-security-oauth2-resource-server:6.4.4")
+	implementation("org.springframework.security:spring-security-oauth2-jose:+")
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+	implementation("org.springframework.boot:spring-boot-starter-security:3.4.4")
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -50,4 +55,4 @@ tasks.named('test') {
 }
 
 
-jib.to.image = 'puscassebi/gateway:s11'
+jib.to.image = 'puscassebi/gateway:s12'

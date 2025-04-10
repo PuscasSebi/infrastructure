@@ -47,4 +47,4 @@ tasks.named("bootBuildImage") {
 tasks.named('test') {
 	useJUnitPlatform()
 }
-jib.to.image = 'puscassebi/eurekaserver:s11'
+jib.to.image = 'puscassebi/eurekaserver:s12'
