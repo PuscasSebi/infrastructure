@@ -23,7 +23,10 @@ docker run -d -p 7080:8080 -e KC_BOOTSTRAP_ADMIN_USERNAME=admin -e KC_BOOTSTRAP_
 
 
 
+kube dashboard
+https://collabnix.com/kubernetes-dashboard-on-docker-desktop-for-windows-2-0-0-3-in-2-minutes/
 
 
 
 
+kubectl -n kube-system create token admin-user

@@ -55,4 +55,4 @@ tasks.named('test') {
 }
 
 
-jib.to.image = 'puscassebi/gateway:s13'
+jib.to.image = 'puscassebi/gateway:s14'
