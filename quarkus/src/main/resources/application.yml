@@ -1,0 +1,11 @@
+greeting:
+  message: "hello"
+
+quarkus:
+  http:
+    port: 8811
+  micrometer:
+    export:
+      prometheus:
+        enabled: true
+        path: /metrics
