@@ -79,4 +79,4 @@ tasks.named("bootBuildImage") {
 	imageName = 'puscassebi/accounts:s6'
 }
 
-jib.to.image = 'puscassebi/accounts:s13'
+jib.to.image = 'puscassebi/accounts:s14'

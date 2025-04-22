@@ -42,4 +42,4 @@ tasks.named('test') {
 }
 
 
-jib.to.image = 'puscassebi/messagestream:s13'
+jib.to.image = 'puscassebi/messagestream:s14'
